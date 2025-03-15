@@ -54,7 +54,7 @@
 Поля:
 
 - `id` - int pk
-- `name` - str, CI (если PG), unique, not null 
+- `name` - str, CI (если PG), unique, not null
 - `description` - - not null, default `""`
 
 ### Фильм <-> Жанр
@@ -62,5 +62,5 @@
 Поля:
 
 - `id` - int pk
-- `movie_id` - сслыка на pk movie.id
-- `genre_id` - сслыка на pk genre.id
+- `movie_id` - ссылка на pk movie.id
+- `genre_id` - ссылка на pk genre.id
