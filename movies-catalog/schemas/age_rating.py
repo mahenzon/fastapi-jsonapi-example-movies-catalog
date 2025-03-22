@@ -1,11 +1,27 @@
-from typing import Annotated
+from typing import (
+    TYPE_CHECKING,
+    Annotated,
+    Optional,
+)
 
 from annotated_types import MaxLen, MinLen
-from pydantic import BaseModel
+from fastapi_jsonapi.schema_base import BaseModel
+from fastapi_jsonapi.types_metadata import RelationshipInfo
+
+if TYPE_CHECKING:
+    from .movie import MovieSchema
 
 
 class AgeRatingBaseSchema(BaseModel):
     description: str
+
+    movies: Annotated[
+        Optional[list["MovieSchema"]],
+        RelationshipInfo(
+            resource_type="movie",
+            many=True,
+        ),
+    ] = None
 
 
 class AgeRatingCreateSchema(AgeRatingBaseSchema):

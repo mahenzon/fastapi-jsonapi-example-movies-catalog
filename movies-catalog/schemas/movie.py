@@ -1,8 +1,16 @@
 from datetime import date
-from typing import Annotated
+from typing import (
+    TYPE_CHECKING,
+    Annotated,
+    Optional,
+)
 
 from annotated_types import MaxLen, MinLen
-from pydantic import BaseModel
+from fastapi_jsonapi.schema_base import BaseModel
+from fastapi_jsonapi.types_metadata import RelationshipInfo
+
+if TYPE_CHECKING:
+    from .age_rating import AgeRatingSchema
 
 title_constrained = Annotated[
     str,
@@ -17,6 +25,15 @@ class MovieBaseSchema(BaseModel):
     release_date: date | None = None
     duration: int | None = None
     age_rating: str | None = None
+
+    age_rating_obj: Annotated[
+        Optional["AgeRatingSchema"],
+        RelationshipInfo(
+            resource_type="age-rating",
+            resource_id_example="PG-13",
+            id_field_name="name",
+        ),
+    ] = None
 
 
 class MovieCreateSchema(MovieBaseSchema):
