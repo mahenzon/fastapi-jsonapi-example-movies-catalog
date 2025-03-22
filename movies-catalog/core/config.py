@@ -2,7 +2,7 @@ import logging
 from pathlib import Path
 from typing import Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, PostgresDsn
 from pydantic_settings import (
     BaseSettings,
     SettingsConfigDict,
@@ -13,8 +13,6 @@ LOG_DEFAULT_FORMAT = (
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-DB_PATH = BASE_DIR / "db.sqlite3"
 
 
 class LoggingConfig(BaseModel):
@@ -33,7 +31,7 @@ class LoggingConfig(BaseModel):
 
 
 class DbConfig(BaseModel):
-    url: str = f"sqlite+aiosqlite:///{DB_PATH}"
+    url: PostgresDsn
     echo: bool = False
     echo_pool: bool = False
     pool_size: int = 50
@@ -51,9 +49,15 @@ class DbConfig(BaseModel):
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         case_sensitive=False,
+        env_prefix="MOVIE_CATALOG__",
+        env_nested_delimiter="__",
+        env_file=(
+            BASE_DIR / ".env.template",
+            BASE_DIR / ".env",
+        ),
     )
     logging: LoggingConfig = LoggingConfig()
-    db: DbConfig = DbConfig()
+    db: DbConfig
 
 
 # noinspection PyArgumentList
