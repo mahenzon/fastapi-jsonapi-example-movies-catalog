@@ -16,6 +16,7 @@ class MovieBaseSchema(BaseModel):
     description: str
     release_date: date | None = None
     duration: int | None = None
+    age_rating: str | None = None
 
 
 class MovieCreateSchema(MovieBaseSchema):
