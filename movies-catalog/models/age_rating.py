@@ -1,5 +1,4 @@
 from sqlalchemy import (
-    Identity,
     String,
     Text,
 )
@@ -11,7 +10,6 @@ from models.base import Base
 class AgeRating(Base):
     name: Mapped[str] = mapped_column(
         String(20),
-        Identity(always=False),
         primary_key=True,
     )
     description: Mapped[str] = mapped_column(

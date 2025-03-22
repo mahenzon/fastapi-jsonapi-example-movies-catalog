@@ -26,7 +26,6 @@ def upgrade() -> None:
         sa.Column(
             "name",
             sa.String(length=20),
-            sa.Identity(always=False),
             nullable=False,
         ),
         sa.Column(
