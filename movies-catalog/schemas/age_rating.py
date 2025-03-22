@@ -3,12 +3,6 @@ from typing import Annotated
 from annotated_types import MaxLen, MinLen
 from pydantic import BaseModel
 
-name_constrained = Annotated[
-    str,
-    MinLen(1),
-    MaxLen(20),
-]
-
 
 class AgeRatingBaseSchema(BaseModel):
     name: str
@@ -16,11 +10,14 @@ class AgeRatingBaseSchema(BaseModel):
 
 
 class AgeRatingCreateSchema(AgeRatingBaseSchema):
-    name: name_constrained
+    name: Annotated[
+        str,
+        MinLen(1),
+        MaxLen(20),
+    ]
 
 
 class AgeRatingUpdateSchema(AgeRatingBaseSchema):
-    name: name_constrained | None = None
     description: str | None = None
 
 
