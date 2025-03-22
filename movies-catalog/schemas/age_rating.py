@@ -5,7 +5,6 @@ from pydantic import BaseModel
 
 
 class AgeRatingBaseSchema(BaseModel):
-    name: str
     description: str
 
 
@@ -22,6 +21,4 @@ class AgeRatingUpdateSchema(AgeRatingBaseSchema):
 
 
 class AgeRatingSchema(AgeRatingBaseSchema):
-    """
-    Age Rating
-    """
+    name: str
