@@ -9,7 +9,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Mapped, mapped_column
 
-from models import Base
+from models.base import Base
 
 
 class Movie(Base):
