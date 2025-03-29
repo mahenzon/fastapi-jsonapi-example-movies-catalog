@@ -10,7 +10,7 @@ from fastapi_jsonapi.schema_base import BaseModel
 from fastapi_jsonapi.types_metadata import RelationshipInfo
 
 if TYPE_CHECKING:
-    from schemas import AgeRatingSchema
+    from schemas import AgeRatingSchema, GenreSchema
 
 title_constrained = Annotated[
     str,
@@ -32,6 +32,14 @@ class MovieBaseSchema(BaseModel):
             resource_type="age-rating",
             resource_id_example="PG-13",
             id_field_name="name",
+        ),
+    ] = None
+
+    genres: Annotated[
+        Optional[list["GenreSchema"]],
+        RelationshipInfo(
+            resource_type="genre",
+            many=True,
         ),
     ] = None
 
