@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 from sqlalchemy import (
     Date,
     ForeignKey,
-    Identity,
     Integer,
     String,
     Text,
@@ -16,17 +15,13 @@ from sqlalchemy.orm import (
 )
 
 from models.base import Base
+from models.mixins import IntIdPk
 
 if TYPE_CHECKING:
     from models import AgeRating
 
 
-class Movie(Base):
-    id: Mapped[int] = mapped_column(
-        Integer,
-        Identity(always=True),
-        primary_key=True,
-    )
+class Movie(IntIdPk, Base):
     title: Mapped[str] = mapped_column(
         String(120),
         index=True,

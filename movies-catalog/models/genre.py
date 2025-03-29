@@ -1,6 +1,4 @@
 from sqlalchemy import (
-    Identity,
-    Integer,
     Text,
 )
 from sqlalchemy.dialects.postgresql import CITEXT
@@ -10,14 +8,10 @@ from sqlalchemy.orm import (
 )
 
 from models.base import Base
+from models.mixins import IntIdPk
 
 
-class Genre(Base):
-    id: Mapped[int] = mapped_column(
-        Integer,
-        Identity(always=True),
-        primary_key=True,
-    )
+class Genre(IntIdPk, Base):
     name: Mapped[str] = mapped_column(
         CITEXT(20),
         unique=True,
