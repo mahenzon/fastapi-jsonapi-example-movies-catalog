@@ -4,12 +4,16 @@ from fastapi_jsonapi import ApplicationBuilder
 from api.generic_view import GenericView
 from models import (
     AgeRating,
+    Genre,
     Movie,
 )
 from schemas import (
     AgeRatingCreateSchema,
     AgeRatingSchema,
     AgeRatingUpdateSchema,
+    GenreCreateSchema,
+    GenreSchema,
+    GenreUpdateSchema,
     MovieCreateSchema,
     MovieSchema,
     MovieUpdateSchema,
@@ -44,5 +48,15 @@ def build_jsonapi_app(
         schema_in_post=AgeRatingCreateSchema,
         schema_in_patch=AgeRatingUpdateSchema,
         model_id_field_name="name",
+    )
+    builder.add_resource(
+        path="/genres",
+        tags=["Genre"],
+        resource_type="genre",
+        view=GenericView,
+        model=Genre,
+        schema=GenreSchema,
+        schema_in_post=GenreCreateSchema,
+        schema_in_patch=GenreUpdateSchema,
     )
     return builder
