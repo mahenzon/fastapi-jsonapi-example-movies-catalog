@@ -26,7 +26,6 @@ class Movie(Base):
         Integer,
         Identity(always=True),
         primary_key=True,
-        autoincrement=True,
     )
     title: Mapped[str] = mapped_column(
         String(120),
