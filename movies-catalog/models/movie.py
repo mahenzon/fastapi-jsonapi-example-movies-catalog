@@ -47,7 +47,7 @@ class Movie(IntIdPk, Base):
     age_rating_obj: Mapped["AgeRating"] = relationship(
         back_populates="movies",
     )
-    genres: Mapped[set["Genre"]] = relationship(
+    genres: Mapped[list["Genre"]] = relationship(
         back_populates="movies",
         secondary=MovieGenre.__table__,
     )

@@ -29,7 +29,7 @@ class Genre(IntIdPk, Base):
         server_default="",
     )
 
-    movies: Mapped[set["Movie"]] = relationship(
+    movies: Mapped[list["Movie"]] = relationship(
         back_populates="genres",
         secondary=MovieGenre.__table__,
     )
