@@ -10,7 +10,7 @@ from fastapi_jsonapi.schema_base import BaseModel
 from fastapi_jsonapi.types_metadata import RelationshipInfo
 
 if TYPE_CHECKING:
-    from .age_rating import AgeRatingSchema
+    from schemas import AgeRatingSchema
 
 title_constrained = Annotated[
     str,

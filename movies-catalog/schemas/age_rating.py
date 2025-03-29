@@ -9,7 +9,7 @@ from fastapi_jsonapi.schema_base import BaseModel
 from fastapi_jsonapi.types_metadata import RelationshipInfo
 
 if TYPE_CHECKING:
-    from .movie import MovieSchema
+    from schemas import MovieSchema
 
 
 class AgeRatingBaseSchema(BaseModel):
