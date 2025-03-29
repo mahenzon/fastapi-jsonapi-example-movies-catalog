@@ -16,9 +16,10 @@ from sqlalchemy.orm import (
 
 from models.base import Base
 from models.mixins import IntIdPk
+from models.move_genre import MovieGenre
 
 if TYPE_CHECKING:
-    from models import AgeRating
+    from models import AgeRating, Genre
 
 
 class Movie(IntIdPk, Base):
@@ -45,6 +46,10 @@ class Movie(IntIdPk, Base):
     )
     age_rating_obj: Mapped["AgeRating"] = relationship(
         back_populates="movies",
+    )
+    genres: Mapped[set["Genre"]] = relationship(
+        back_populates="movies",
+        secondary=MovieGenre.__table__,
     )
 
     def __str__(self) -> str:
