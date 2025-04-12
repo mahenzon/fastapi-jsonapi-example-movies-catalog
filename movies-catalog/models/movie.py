@@ -16,7 +16,7 @@ from sqlalchemy.orm import (
 
 from models.base import Base
 from models.mixins import IntIdPk
-from models.move_genre import MovieGenre
+from models.movie_genre import MovieGenre
 
 if TYPE_CHECKING:
     from models import AgeRating, Genre
